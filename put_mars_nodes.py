@@ -7,7 +7,7 @@ Usage:
     put_mars_nodes [options]
 
 Options:
-  --config=CONFIG   Use this config file [default: graphit.conf]
+  --config=CONFIG   Use this config file [default: /usr/local/etc/graphit.conf]
   --timeout=SEC     Set HTTP read timeout [default: 300]
 """
 
@@ -105,7 +105,11 @@ def define_mars_edges(source_dir, filename, session):
         
 if __name__ == "__main__":
         args=docopt(__doc__, version='put_mars_nodes 0.1')
-        config = get_config(args['--config'])
+        try:
+                config = get_config(args['--config'])
+        except FileNotFoundError as e:
+                print("Config file not found in default location: /usr/local/etc/graphit.conf. Please define config file or use --config to Provide a path to config file")
+                sys.exit(5)
         session = get_session(config, float(args['--timeout']))
         pool = Pool(size=20) 
         source_dir = os.getcwd()
