@@ -1,7 +1,5 @@
 MANIFEST.in
 README.md
-graphit.conf
-helper.py
 setup.cfg
 setup.py
 mars_importer.egg-info/PKG-INFO
