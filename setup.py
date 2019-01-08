@@ -20,10 +20,8 @@ setuptools.setup(
         'graphit-tool>=0.7',
 		'gevent>=1.3.7',
 		'docopt>=0.6.2',
-		'helper>=0.0.0',
 		
     ],
     dependency_links=[
         'git+https://github.com/arago/graphit-tool@library',
-		'git+https://github.com/gibsonxavier/mars_importer/blob/master/helper.py'
     ]
