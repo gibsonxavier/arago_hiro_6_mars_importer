@@ -2,9 +2,9 @@
 
 import setuptools
 
-name = 'mars_importer'
 
 setuptools.setup(
+    name='mars_importer',
     version='1.0',
     url="https://github.com/gibsonxavier/mars_importer",
     packages=setuptools.find_packages(),
