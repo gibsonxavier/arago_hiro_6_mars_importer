@@ -1,4 +1,8 @@
+MANIFEST.in
 README.md
+graphit.conf
+helper.py
+setup.cfg
 setup.py
 put_mars_nodes.egg-info/PKG-INFO
 put_mars_nodes.egg-info/SOURCES.txt
