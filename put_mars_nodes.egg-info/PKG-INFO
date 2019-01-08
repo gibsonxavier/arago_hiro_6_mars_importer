@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: put-mars-nodes
+Version: 0.0.1
+Summary: Tool to import MARS model data
+Home-page: https://github.com/gibsonxavier/mars_importer
+Author: Gibson Xavier
+Author-email: gxavier@arago.co
+License: UNKNOWN
+Description: Tool to import MARS model data created by the Java Excel to MARS utility for HIRO 6
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
