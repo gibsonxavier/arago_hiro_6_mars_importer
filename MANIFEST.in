@@ -1,2 +1,2 @@
-include graphit.conf
-include helper.py
+recursive-include data *
+recursive-include mars_importer *

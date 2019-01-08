@@ -2,6 +2,10 @@ MANIFEST.in
 README.md
 setup.cfg
 setup.py
+data/graphit.conf
+data/install.sh
+mars_importer/helper.py
+mars_importer/put_mars_nodes.py
 mars_importer.egg-info/PKG-INFO
 mars_importer.egg-info/SOURCES.txt
 mars_importer.egg-info/dependency_links.txt

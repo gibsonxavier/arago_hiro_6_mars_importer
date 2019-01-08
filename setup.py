@@ -10,6 +10,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     package_data={'': ['LICENSE'], 'mars_importer': ['*'], 'data': ['*']},
     package_dir={'requests': ''},
+    include_package_data=True,
     install_requires=[
         'graphit-tool',
 		'gevent>=1.3.7',
