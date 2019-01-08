@@ -14,5 +14,5 @@ setuptools.setup(
 		
     ],
     dependency_links=[
-        'git+https://github.com/arago/graphit-tool@library#egg=graphit-tool'
+        'git+https://github.com/arago/graphit-tool@library'
     ])
