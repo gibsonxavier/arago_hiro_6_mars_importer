@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: put-mars-nodes
-Version: 1.0.0
+Version: 1.0
 Summary: Inject MARS files into HIRO graph
 Home-page: https://github.com/gibsonxavier/mars_importer
 Author: Gibson Xavier

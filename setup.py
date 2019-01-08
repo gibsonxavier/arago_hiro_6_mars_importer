@@ -2,9 +2,10 @@
 
 import setuptools
 
-
+name = 'mars_importer'
 
 setuptools.setup(
+    version='1.0',
     url="https://github.com/gibsonxavier/mars_importer",
     packages=setuptools.find_packages(),
     install_requires=[
@@ -14,5 +15,5 @@ setuptools.setup(
 		
     ],
     dependency_links=[
-        'git+https://github.com/arago/graphit-tool@library'
+        'git+https://github.com/arago/graphit-tool@library#egg=graphit-tool'
     ])
