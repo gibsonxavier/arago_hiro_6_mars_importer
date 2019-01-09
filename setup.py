@@ -7,13 +7,13 @@ setuptools.setup(
     name='mars_importer',
     version='1.0',
     url="https://github.com/gibsonxavier/mars_importer",
-    py_modules=['helper','put_mars_nodes'],
+    py_modules=['helper'],
     scripts=['mars_importer'],
     install_requires=[
-        'graphit-tool',
+        'graphit-tool>=0.0',
 		'docopt>=0.6.2'
 		
     ],
     data_files=[('/usr/local/etc/mars_importer/', ['data/graphit.conf']),('/usr/local/etc/mars_importer/',['data/install.sh'])],
-    dependency_links=['git+https://github.com/arago/graphit-tool@library#egg=graphit-tool']
+    dependency_links=['https://github.com/arago/graphit-tool@library#egg=graphit-tool-0.7']
     )
