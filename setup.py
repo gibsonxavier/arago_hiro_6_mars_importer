@@ -7,8 +7,8 @@ setuptools.setup(
     name='mars_importer',
     version='1.0',
     url="https://github.com/gibsonxavier/mars_importer",
-    scripts=['put_mars_nodes.py'],
-    py_modules=['helper'],
+    py_modules=['helper','put_mars_nodes'],
+    scripts=['mars_importer'],
     install_requires=[
         'graphit-tool',
 		'docopt>=0.6.2'

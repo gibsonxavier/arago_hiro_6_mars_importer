@@ -1,7 +1,7 @@
 MANIFEST.in
 README.md
 helper.py
-put_mars_nodes.py
+mars_importer
 setup.cfg
 setup.py
 data/graphit.conf
