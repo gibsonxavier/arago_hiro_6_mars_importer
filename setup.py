@@ -5,7 +5,7 @@ import setuptools
 
 setuptools.setup(
     name='mars_importer',
-    version='1.0',
+    version='1.0.0',
     url="https://github.com/gibsonxavier/mars_importer",
     py_modules=['helper'],
     scripts=['mars_importer'],
