@@ -12,7 +12,7 @@ Install the mars_importer
 ```bash
 pip install git+https://github.com/gibsonxavier/mars_importer
 ```
-Edit the graphit.conf and provide information and credentials to connect to a HIRO 6 instance. 
+Edit the graphit.conf (/usr/local/etc/mars_importer/graphit.conf) and provide information and credentials to connect to a HIRO 6 instance. 
 
 Navigate to the directory containing the MARS JSON definition files
 run the importer
