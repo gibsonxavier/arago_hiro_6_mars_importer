@@ -1,0 +1,134 @@
+#!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3
+
+"""put_mars_nodes
+
+Usage:
+    put_mars_nodes [options] source <source_dir>
+    put_mars_nodes [options]
+
+Options:
+  --config=CONFIG   Use this config file [default: /usr/local/etc/graphit.conf]
+  --timeout=SEC     Set HTTP read timeout [default: 300]
+"""
+
+from gevent import monkey; monkey.patch_all()
+from docopt import docopt
+import os # for manipulates files and subdirectories
+import json # handle json files
+import os
+import sys
+from helper import get_config, get_session
+from gevent.pool import Pool
+import graphit, requests
+import re
+
+
+data_list = {}
+
+def push_mars_def(source_dir, filename, session):
+        with open(os.path.join(source_dir, filename), "r") as f:
+                data=json.loads(f.read())
+        node=graphit.GraphitNode(session, data=data)
+        try:
+                gnode=node.create()
+                data_list.update({data["ogit/_xid"]:gnode})
+        except graphit.GraphitError as e:
+                error=str(e)
+                if "already set on ogit/_id" in error:
+                        regex = r"ogit/_id: (.+?),"
+                        ogit_id=re.search(regex, error).group(1)
+                        print("Found an Exisitng Node with ogit/_id:"+ogit_id+", Will Update Existing")
+                        
+                        gnode=session.update("/{id}".format(id=ogit_id),data=data)
+                        data_list.update({data["ogit/_xid"]:gnode})
+                else:
+                        print(error)
+        except (AttributeError, KeyError) as error:
+                print("MARS node creation failed due to missing information: "+str(error))
+    
+
+def define_mars_edges(source_dir, filename, session):
+        with open(os.path.join(source_dir, filename), "r") as f:
+                try:
+                        data=json.loads(f.read())
+                except:
+                        print("Invalid JSON file:"+filename)
+                try:
+                        json_nid=data["ogit/_xid"]
+                        json_dep=data["=/Dependencies"]
+                        node=graphit.GraphitNode(session, data=data_list[json_nid])
+                        if (data["ogit/_type"]=="ogit/MARS/Application"):
+                                for edge in json_dep:
+                                        q=list(session.query(graphit.EESQuery('ogit/_xid:'+edge)))
+                                        if q:
+                                                dep=graphit.GraphitNode(session, data=q[0])
+                                        else:
+                                                print("The Dependend node:"+dep+" is missing")
+                                        if("Resource" in edge):
+                                        #print(json.dumps(data_list[edge]))
+                                                dep.connect("ogit/dependsOn",node)
+                        elif (data["ogit/_type"]=="ogit/MARS/Resource"):
+                                for edge in json_dep:
+                                        q=list(session.query(graphit.EESQuery('ogit/_xid:'+edge)))
+                                        if q:
+                                                dep=graphit.GraphitNode(session, data=q[0])
+                                        else:
+                                                print("The Dependend node:"+dep+" is missing")
+                                        if("Application" in edge):
+                                                node.connect("ogit/dependsOn",dep)
+                                        else:
+                                                dep.connect("ogit/dependsOn",node)                                                
+                        elif (data["ogit/_type"]=="ogit/MARS/Software"):
+                                for edge in json_dep:
+                                        q=list(session.query(graphit.EESQuery('ogit/_xid:'+edge)))
+                                        if q:
+                                                dep=graphit.GraphitNode(session, data=q[0])
+                                        else:
+                                                print("The Dependend node:"+dep+" is missing")
+                                        if("Resource" in edge):
+                                                node.connect("ogit/dependsOn",dep)
+                                        else:
+                                                dep.connect("ogit/dependsOn",node)                                                
+                        if (data["ogit/_type"]=="ogit/MARS/Machine"):
+                                for edge in json_dep:
+                                        q=list(session.query(graphit.EESQuery('ogit/_xid:'+edge)))
+                                        if q:
+                                                dep=graphit.GraphitNode(session, data=q[0])
+                                        else:
+                                                print("The Dependend node:"+dep+" is missing")
+                                        if("Software" in edge):
+                                                node.connect("ogit/dependsOn",dep)                                                                          
+                except (AttributeError, KeyError) as error:
+                        print("Dependency creation failed for file: "+filename+" as the node was not created due to error: "+str(error))
+                        
+                        
+        
+if __name__ == "__main__":
+        args=docopt(__doc__, version='put_mars_nodes 0.1')
+        try:
+                config = get_config(args['--config'])
+        except FileNotFoundError as e:
+                print("Config file not found in default location: /usr/local/etc/graphit.conf. Please define config file or use --config to Provide a path to config file")
+                sys.exit(5)
+        session = get_session(config, float(args['--timeout']))
+        pool = Pool(size=20) 
+        source_dir = os.getcwd()
+        if(args['<source_dir>']):
+                source_dir = args['<source_dir>']
+        else:
+                source_dir = os.getcwd()
+        if not any(fnames.endswith('.json') for fnames in os.listdir(source_dir)):
+                print("No JSON Files found in:"+source_dir)
+                sys.exit(0)
+        else:
+                fnames = [f for f in os.listdir(source_dir) if f.endswith(".json")]
+        for filename in fnames:
+                pool.spawn(push_mars_def, source_dir, filename, session)
+        pool.join()
+        #print(json.dumps(data_list[]))
+        print("Processing Dependencies.....")
+        for filename in fnames:
+                pool.spawn(define_mars_edges, source_dir, filename, session)
+        pool.join()
+        print("Finished MARS Creation")
+        

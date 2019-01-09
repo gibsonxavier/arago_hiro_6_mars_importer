@@ -1,5 +1,7 @@
 MANIFEST.in
 README.md
+helper.py
+put_mars_nodes.py
 setup.cfg
 setup.py
 data/graphit.conf
@@ -9,5 +11,3 @@ mars_importer.egg-info/SOURCES.txt
 mars_importer.egg-info/dependency_links.txt
 mars_importer.egg-info/requires.txt
 mars_importer.egg-info/top_level.txt
-src/helper.py
-src/put_mars_nodes.py
