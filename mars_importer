@@ -129,7 +129,7 @@ if __name__ == "__main__":
         #print(json.dumps(data_list[]))
                 print("Processing Dependencies.....")
                 for filename in fnames:
-                        pool.spawn(define_mars_edges, source_dir, filename, session))
+                        pool.spawn(define_mars_edges, source_dir, filename, session)
                 pool.join()
                 print("Finished MARS Creation")
         except Exception as e:
