@@ -9,7 +9,7 @@ setuptools.setup(
     url="https://github.com/gibsonxavier/mars_importer",
     packages=setuptools.find_packages(),
     package_data={'': ['LICENSE'], 'mars_importer': ['*'], 'data': ['*']},
-    package_dir={'requests': ''},
+    package_dir={'mars_importer': ''},
     include_package_data=True,
     install_requires=[
         'graphit-tool',

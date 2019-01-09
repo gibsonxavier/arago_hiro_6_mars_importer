@@ -1,2 +1,2 @@
-recursive-include mars_importer/data/*
-recursive-include mars_importer/src/*
+recursive-include data *
+recursive-include src *
