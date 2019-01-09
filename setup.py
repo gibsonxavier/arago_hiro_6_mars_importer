@@ -14,6 +14,6 @@ setuptools.setup(
 		'docopt>=0.6.2'
 		
     ],
-    data_files=[('/usr/local/etc/mars_importer/', ['data/graphit.conf']),('/usr/local/etc/mars_importer/',['data/install.sh'])],
+    data_files=[('/usr/local/etc/mars_importer/', ['data/graphit.conf'])],
     dependency_links=['https://github.com/arago/graphit-tool@library#egg=graphit-tool-0.7']
     )
