@@ -27,8 +27,26 @@ Options:
   --config=CONFIG   Use this config file [default: /usr/local/etc/mars_importer/graphit.conf]
   --timeout=SEC     Set HTTP read timeout [default: 300]
 ```
+## Organization
+Please ensure that the ogit/organization with the value used in the cusotmerID field of the excel exsts, else please create it using:
 
-# Authentication Errors (403)
+URL to POST the request:
+```bash
+ https://hiro_instance/new/ogit/Organization?_TOKEN=$TOKEN
+```
+JSON Payload: 
+```java
+  {
+    "ogit/_graphtype" : "vertex"
+    "ogit/_id" : "quanto-solutions.de"
+    "ogit/_is-deleted" : "false"
+    "ogit/_type" : "ogit/Organization"
+    "ogit/_xid" : "customerID"
+    "ogit/description" : "customerID"
+    "ogit/name" : "customerID"
+  }
+```
+## Authentication Errors (403)
 In case of authentication or access denied errors, please check the client being used. What should always work is the client for Local data load: (HIRO LocalDataLoad-Inital data load for HIRO GraphDB)
 
 License
