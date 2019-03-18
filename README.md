@@ -37,13 +37,12 @@ URL to POST the request:
 JSON Payload: 
 ```java
   {
-    "ogit/_graphtype" : "vertex"
-    "ogit/_id" : "quanto-solutions.de"
-    "ogit/_is-deleted" : "false"
-    "ogit/_type" : "ogit/Organization"
-    "ogit/_xid" : "customerID"
-    "ogit/description" : "customerID"
-    "ogit/name" : "customerID"
+    "ogit/_graphtype" : "vertex",
+    "ogit/_is-deleted" : "false",
+    "ogit/_type" : "ogit/Organization",
+    "ogit/_xid" : "customerID",
+    "ogit/description" : "customerID",
+    "ogit/name" : "customerID",
   }
 ```
 ## Authentication Errors (403)
