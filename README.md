@@ -28,7 +28,7 @@ Options:
   --timeout=SEC     Set HTTP read timeout [default: 300]
 ```
 
-Authentication Errors (403)
+# Authentication Errors (403)
 In case of authentication or access denied errors, please check the client being used. What should always work is the client for Local data load: (HIRO LocalDataLoad-Inital data load for HIRO GraphDB)
 
 License
