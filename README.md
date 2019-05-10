@@ -32,7 +32,9 @@ Please ensure that the ogit/organization with the value used in the cusotmerID f
 
 URL to POST the request:
 ```bash
- https://hiro_instance/new/ogit/Organization?_TOKEN=$TOKEN
+ https://hiro_instance/new/ogit/Organization
+ 
+ Send header _TOKEN=$TOKEN
 ```
 JSON Payload: 
 ```java
@@ -42,7 +44,7 @@ JSON Payload:
     "ogit/_type" : "ogit/Organization",
     "ogit/_xid" : "customerID",
     "ogit/description" : "customerID",
-    "ogit/name" : "customerID",
+    "ogit/name" : "customerID"
   }
 ```
 ## Authentication Errors (403)
