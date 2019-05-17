@@ -30,21 +30,6 @@ Options:
 ## Organization
 Please ensure that the ogit/organization with the value used in the cusotmerID field of the excel exsts, else please create it using:
 
-```python
-import requests
-
-url = "https://HOSTNAME/new/ogit%2FOrganization"
-
-payload = " {\n    \"ogit/_graphtype\" : \"vertex\",\n    \"ogit/_is-deleted\" : \"false\",\n    \"ogit/_type\" : \"ogit/Organization\",\n    \"ogit/_xid\" : \"ORGANIZATION\",\n    \"ogit/description\" : \"ORGANIZATION\",\n    \"ogit/name\" : \"ORGANIZATION\"\n  }"
-headers = {
-    '_TOKEN': TOKEN,
-    'Content-Type': "application/json",
-    }
-response = requests.request("POST", url, data=payload, headers=headers)
-
-print(response.text)
-````
-
 URL to POST the request:
 ```bash
  https://hiro_instance/new/ogit%2FOrganization
@@ -62,6 +47,21 @@ JSON Payload:
     "ogit/name" : "ORGANIZATION"
   }
 ```
+Python code:
+```python
+import requests
+
+url = "https://HOSTNAME/new/ogit%2FOrganization"
+
+payload = " {\n    \"ogit/_graphtype\" : \"vertex\",\n    \"ogit/_is-deleted\" : \"false\",\n    \"ogit/_type\" : \"ogit/Organization\",\n    \"ogit/_xid\" : \"ORGANIZATION\",\n    \"ogit/description\" : \"ORGANIZATION\",\n    \"ogit/name\" : \"ORGANIZATION\"\n  }"
+headers = {
+    '_TOKEN': TOKEN,
+    'Content-Type': "application/json",
+    }
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+````
 ## Authentication Errors (403)
 In case of authentication or access denied errors, please check the client being used. What should always work is the client for Local data load: (HIRO LocalDataLoad-Inital data load for HIRO GraphDB)
 
