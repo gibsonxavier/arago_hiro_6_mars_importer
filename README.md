@@ -30,21 +30,36 @@ Options:
 ## Organization
 Please ensure that the ogit/organization with the value used in the cusotmerID field of the excel exsts, else please create it using:
 
+```python
+import requests
+
+url = "https://HOSTNAME/new/ogit%2FOrganization"
+
+payload = " {\n    \"ogit/_graphtype\" : \"vertex\",\n    \"ogit/_is-deleted\" : \"false\",\n    \"ogit/_type\" : \"ogit/Organization\",\n    \"ogit/_xid\" : \"ORGANIZATION\",\n    \"ogit/description\" : \"ORGANIZATION\",\n    \"ogit/name\" : \"ORGANIZATION\"\n  }"
+headers = {
+    '_TOKEN': TOKEN,
+    'Content-Type': "application/json",
+    }
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+````
+
 URL to POST the request:
 ```bash
- https://hiro_instance/new/ogit/Organization
+ https://hiro_instance/new/ogit%2FOrganization
  
  Send header _TOKEN=$TOKEN
 ```
 JSON Payload: 
 ```java
-  {
+ {
     "ogit/_graphtype" : "vertex",
     "ogit/_is-deleted" : "false",
     "ogit/_type" : "ogit/Organization",
-    "ogit/_xid" : "customerID",
-    "ogit/description" : "customerID",
-    "ogit/name" : "customerID"
+    "ogit/_xid" : "ORGANIZATION",
+    "ogit/description" : "ORGANIZATION",
+    "ogit/name" : "ORGANIZATION"
   }
 ```
 ## Authentication Errors (403)
