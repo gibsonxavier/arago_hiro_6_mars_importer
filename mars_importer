@@ -63,7 +63,7 @@ def define_mars_edges(source_dir, filename, session):
                                         if q:
                                                 dep=graphit.GraphitNode(session, data=q[0])
                                         else:
-                                                print("The Dependend node:"+dep+" is missing")
+                                                print("The Dependend node:"+edge+" is missing")
                                         if("Resource" in edge):
                                         #print(json.dumps(data_list[edge]))
                                                 dep.connect("ogit/dependsOn",node)
@@ -73,7 +73,7 @@ def define_mars_edges(source_dir, filename, session):
                                         if q:
                                                 dep=graphit.GraphitNode(session, data=q[0])
                                         else:
-                                                print("The Dependend node:"+dep+" is missing")
+                                                print("The Dependend node:"+edge+" is missing")
                                         if("Application" in edge):
                                                 node.connect("ogit/dependsOn",dep)
                                         else:
@@ -84,7 +84,7 @@ def define_mars_edges(source_dir, filename, session):
                                         if q:
                                                 dep=graphit.GraphitNode(session, data=q[0])
                                         else:
-                                                print("The Dependend node:"+dep+" is missing")
+                                                print("The Dependend node:"+edge+" is missing")
                                         if("Resource" in edge):
                                                 node.connect("ogit/dependsOn",dep)
                                         else:
@@ -95,7 +95,7 @@ def define_mars_edges(source_dir, filename, session):
                                         if q:
                                                 dep=graphit.GraphitNode(session, data=q[0])
                                         else:
-                                                print("The Dependend node: is missing")
+                                                print("The Dependend node:"+edge+" is missing")
                                         if("Software" in edge):
                                                 node.connect("ogit/dependsOn",dep)                                                                          
                 except (AttributeError, KeyError) as error:
